@@ -1,56 +1,62 @@
-# Getting Started with Create React App
+🚀 My Portfolio Website
+This project was bootstrapped with Vite + React for the frontend and uses a Node.js backend.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
+📌 Available Scripts
 🖥️ Running the Frontend
 In the frontend directory, run:
-### `yarn`
-Installs all the necessary dependencies.
 
-### `yarn dev`
-Runs the frontend in the development mode.
+bash
+Copy
+Edit
+yarn install
+Installs all necessary dependencies.
+
+bash
+Copy
+Edit
+yarn dev
+Runs the frontend in development mode.
 Open http://localhost:5173 to view it in the browser.
 
-The page will reload if you make edits. You will also see any lint errors in the console.
+The page will reload if you make edits, and you will see lint errors in the console.
 
 🔧 Running the Backend
 In the backend directory, run:
 
-### `yarn`
-Installs all the necessary dependencies.
+bash
+Copy
+Edit
+yarn install
+Installs all necessary dependencies.
 
-### `yarn start`
-Runs the backend server.
-The backend will be live at http://localhost:6002.
+bash
+Copy
+Edit
+yarn start
+Runs the backend server at http://localhost:6002.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+✅ Additional Scripts
+yarn test
+Launches the test runner in interactive watch mode.
+See more about running tests.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+yarn build
+Builds the app for production inside the build folder.
+It optimizes React for the best performance.
 
-### `yarn test`
+yarn eject
+Warning: This is a one-way operation. Once ejected, you can't go back!
+This command copies all configurations and dependencies into your project for customization.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🎨 Features
+✅ Modern UI & Animations – Clean and responsive design
+✅ Fully Responsive – Works on all devices
+✅ Contact Form – Users can send messages
+✅ Fast Performance – Optimized with Vite for quick load times
 
-### `yarn build`
+📜 Learn More
+Vite Documentation: https://vitejs.dev/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+React Documentation: https://reactjs.org/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Tailwind CSS Docs: https://tailwindcss.com/
