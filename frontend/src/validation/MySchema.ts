@@ -10,8 +10,7 @@ const MySchema = Yup.object({
       .min(10, "Must be at least 10 digits")
       .required("Mobile number is required"),
     message: Yup.string()
-      .min(10, "Message must be at least 10 characters")
-      .required("Message is required"),
+      .min(10, "Message must be at least 10 characters"),
   })
 
   export default MySchema;

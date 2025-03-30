@@ -7,7 +7,6 @@ import Sagemaker from "../assets/Sage.jpeg";
 import DataSaur from "../assets/datasaur.png";
 import Appen from "../assets/appen.png";
 
-// Skill Interface
 interface Skill {
   name: string;
   icon: string;

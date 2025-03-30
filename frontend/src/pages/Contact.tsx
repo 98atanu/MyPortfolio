@@ -1,4 +1,3 @@
-import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { motion } from "framer-motion";
 import { Mail, Phone, User, MessageCircle } from "lucide-react";
@@ -6,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MySchema from "../validation/MySchema.ts";
 
-const Contact: React.FC = () => {
+const Contact = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-6">
       <motion.div 
@@ -15,12 +14,9 @@ const Contact: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="max-w-xl w-full bg-white/10 border border-gray-700 shadow-lg shadow-blue-500/40 backdrop-blur-lg rounded-2xl p-8 text-gray-200"
       >
-        {/*  Title */}
         <h2 className="text-4xl font-extrabold text-indigo-400 text-center mb-4">
-        📨 Contact Me
+          📨 Contact Me
         </h2>
-
-        {/* ✍ Form */}
         <Formik
           initialValues={{
             fname: "",
@@ -37,22 +33,20 @@ const Contact: React.FC = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values),
               });
-              const data = await res.json();
 
-              if (data.status === 201) {
-                toast.success("Message sent successfully! 🚀");
-                resetForm();
+              if (res.ok) {
+                toast.success("✅ Message sent successfully!");
+                resetForm(); 
               } else {
-                toast.error("Oops! Something went wrong. Try again. 😢");
+                toast.error("❌ Oops! Something went wrong. Try again.");
               }
             } catch (error) {
-              toast.error("Server error. Try again later. ⚠️");
+              toast.error("⚠️ Server error. Try again later.");
             }
           }}
         >
           {({ isSubmitting }) => (
             <Form className="space-y-5">
-              {/* ✅ First Name */}
               <div>
                 <label className="block text-gray-300 font-medium">First Name</label>
                 <div className="relative">
@@ -66,8 +60,6 @@ const Contact: React.FC = () => {
                 </div>
                 <ErrorMessage name="fname" component="p" className="text-red-400 text-sm mt-1" />
               </div>
-
-              {/* ✅ Last Name */}
               <div>
                 <label className="block text-gray-300 font-medium">Last Name</label>
                 <div className="relative">
@@ -81,8 +73,6 @@ const Contact: React.FC = () => {
                 </div>
                 <ErrorMessage name="lname" component="p" className="text-red-400 text-sm mt-1" />
               </div>
-
-              {/* ✅ Email */}
               <div>
                 <label className="block text-gray-300 font-medium">Email</label>
                 <div className="relative">
@@ -96,8 +86,6 @@ const Contact: React.FC = () => {
                 </div>
                 <ErrorMessage name="email" component="p" className="text-red-400 text-sm mt-1" />
               </div>
-
-              {/* ✅ Mobile */}
               <div>
                 <label className="block text-gray-300 font-medium">Mobile</label>
                 <div className="relative">
@@ -111,8 +99,6 @@ const Contact: React.FC = () => {
                 </div>
                 <ErrorMessage name="mobile" component="p" className="text-red-400 text-sm mt-1" />
               </div>
-
-              {/* ✅ Message */}
               <div>
                 <label className="block text-gray-300 font-medium">Message</label>
                 <div className="relative">
@@ -127,8 +113,6 @@ const Contact: React.FC = () => {
                 </div>
                 <ErrorMessage name="message" component="p" className="text-red-400 text-sm mt-1" />
               </div>
-
-              {/* ✅ Submit Button */}
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
@@ -141,8 +125,7 @@ const Contact: React.FC = () => {
             </Form>
           )}
         </Formik>
-
-        <ToastContainer />
+        <ToastContainer position="bottom-center" autoClose={2000} theme="dark" />
       </motion.div>
     </div>
   );

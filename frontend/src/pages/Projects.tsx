@@ -1,10 +1,9 @@
 import  { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import axios from "axios"; // Import axios (optional)
-
+import axios from "axios"; 
 interface Project {
-  _id: string; // MongoDB generates _id field
+  _id: string; 
   title: string;
   description: string;
   link: string;
@@ -18,7 +17,7 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("http://localhost:6002/api/projects"); // Backend URL
+        const response = await axios.get("http://localhost:6002/api/projects"); 
         setProjects(response.data);
       } catch (err) {
         setError("Failed to load projects");
@@ -43,8 +42,7 @@ const Projects = () => {
           My Projects
         </h2>
         <p className="text-lg text-gray-300 leading-relaxed">
-          Here are some of my recent projects showcasing my skills in **React,
-          Tailwind, Redux, and more.** Explore my work and see what I build! 🚀
+          Here are some of my recent projects showcasing my skills in React, Tailwind, Redux, and more. Explore my work and see what I build! 🚀
         </p>
       </motion.div>
 

@@ -13,15 +13,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST a new project (for admin use)
 router.post("/", async (req, res) => {
   try {
-    console.log("Received Data:", req.body);
     const newProject = new Project(req.body);
     await newProject.save();
     res.status(201).json({ message: "Project added successfully" });
   } catch (err) {
-    console.error("Error Saving Project:", err); // Log error for debugging
     res.status(500).json({ error: "Failed to add project", details: err.message });
   }
 });

@@ -7,7 +7,6 @@ const Home = () => {
     <div className="bg-gradient-to-br from-indigo-900 via-indigo-700 to-indigo-500 min-h-screen flex items-center justify-center px-6">
       <div className="max-w-5xl w-full bg-white shadow-2xl rounded-3xl p-10 md:p-16 flex flex-col md:flex-row items-center gap-10">
         
-        {/* Left Section */}
         <motion.div 
           initial={{ opacity: 0, x: -50 }} 
           animate={{ opacity: 1, x: 0 }} 
@@ -24,7 +23,6 @@ const Home = () => {
             A passionate IT Professional dedicated to crafting seamless digital experiences. I specialize in Frontend Development and Backend basics, building user-friendly and scalable applications that blend aesthetics with functionality. Let’s collaborate and create something amazing! 🚀
           </p>
 
-          {/* Buttons */}
           <div className="mt-6 flex justify-center md:justify-start space-x-6">
             <NavLink
               to="/about"
@@ -41,7 +39,6 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Right Section - Profile Image */}
         <motion.div 
           initial={{ opacity: 0, x: 50 }} 
           animate={{ opacity: 1, x: 0 }} 
