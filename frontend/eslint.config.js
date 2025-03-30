@@ -20,6 +20,9 @@ export default tseslint.config(
     rules: {
       // Include recommended rules from react-hooks
       ...reactHooks.configs.recommended.rules,
+      "react/prop-types": "off",
+    "no-unused-vars": "off",
+    "react/no-unescaped-entities": "off",
       
       // Custom TypeScript rules
       '@typescript-eslint/no-explicit-any': 'off', // Allow 'any' type without warnings/errors

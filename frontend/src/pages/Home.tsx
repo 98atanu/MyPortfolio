@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import MyPic from "../assets/mypic.jpg";
 import { NavLink } from "react-router-dom";
