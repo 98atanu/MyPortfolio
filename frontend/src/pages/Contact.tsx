@@ -35,13 +35,13 @@ const Contact = () => {
               });
 
               if (res.ok) {
-                toast.success("✅ Message sent successfully!");
+                toast.success("Message sent successfully!");
                 resetForm(); 
               } else {
-                toast.error("❌ Oops! Something went wrong. Try again.");
+                toast.error("Oops! Something went wrong. Try again.");
               }
             } catch (error) {
-              toast.error("⚠️ Server error. Try again later.");
+              toast.error("Server error. Try again later.");
             }
           }}
         >
