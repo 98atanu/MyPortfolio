@@ -5,7 +5,7 @@ const ContactSchema = new mongoose.Schema({
   lname: { type: String, required: true },
   email: { type: String, required: true },
   mobile: { type: String, required: true },
-  message: { type: String, required: true },
+  message: { type: String, required: false },
   createdAt: { type: Date, default: Date.now },
 });
 
