@@ -1,11 +1,23 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { motion } from "framer-motion";
-import { Mail, Phone, User, MessageCircle } from "lucide-react";
+import { Mail, Phone, User, MessageCircle, Image as ImageIcon } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MySchema from "../validation/MySchema.ts";
+import { useState } from "react";
 
 const Contact = () => {
+  const [image, setImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setImage(file);
+      setPreview(URL.createObjectURL(file)); 
+    }
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-6">
       <motion.div 
@@ -27,16 +39,26 @@ const Contact = () => {
           }}
           validationSchema={MySchema}
           onSubmit={async (values, { resetForm }) => {
+            const formData = new FormData();
+            formData.append("fname", values.fname);
+            formData.append("lname", values.lname);
+            formData.append("email", values.email);
+            formData.append("mobile", values.mobile);
+            formData.append("message", values.message);
+
+            if (image) formData.append("image", image);
+
             try {
               const res = await fetch("http://localhost:6002/api/contact", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(values),
+                body: formData, 
               });
 
               if (res.ok) {
                 toast.success("Message sent successfully!");
-                resetForm(); 
+                resetForm();
+                setImage(null);
+                setPreview(null); 
               } else {
                 toast.error("Oops! Something went wrong. Try again.");
               }
@@ -47,6 +69,7 @@ const Contact = () => {
         >
           {({ isSubmitting }) => (
             <Form className="space-y-5">
+              {/* First Name Field */}
               <div>
                 <label className="block text-gray-300 font-medium">First Name</label>
                 <div className="relative">
@@ -60,6 +83,8 @@ const Contact = () => {
                 </div>
                 <ErrorMessage name="fname" component="p" className="text-red-400 text-sm mt-1" />
               </div>
+
+              {/* Last Name Field */}
               <div>
                 <label className="block text-gray-300 font-medium">Last Name</label>
                 <div className="relative">
@@ -73,6 +98,8 @@ const Contact = () => {
                 </div>
                 <ErrorMessage name="lname" component="p" className="text-red-400 text-sm mt-1" />
               </div>
+
+              {/* Email Field */}
               <div>
                 <label className="block text-gray-300 font-medium">Email</label>
                 <div className="relative">
@@ -86,6 +113,8 @@ const Contact = () => {
                 </div>
                 <ErrorMessage name="email" component="p" className="text-red-400 text-sm mt-1" />
               </div>
+
+              {/* Mobile Field */}
               <div>
                 <label className="block text-gray-300 font-medium">Mobile</label>
                 <div className="relative">
@@ -99,6 +128,8 @@ const Contact = () => {
                 </div>
                 <ErrorMessage name="mobile" component="p" className="text-red-400 text-sm mt-1" />
               </div>
+
+              {/* Message Field */}
               <div>
                 <label className="block text-gray-300 font-medium">Message</label>
                 <div className="relative">
@@ -113,6 +144,31 @@ const Contact = () => {
                 </div>
                 <ErrorMessage name="message" component="p" className="text-red-400 text-sm mt-1" />
               </div>
+
+              {/* Image Upload Field */}
+              <div>
+                <label className="block text-gray-300 font-medium">Upload Image (Optional)</label>
+                <div className="relative">
+                  <ImageIcon className="absolute left-3 top-4 text-gray-400" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="w-full mt-1 p-3 pl-10 bg-gray-800 border border-gray-600 rounded-lg text-gray-300 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                  />
+                </div>
+                {/* Image Preview */}
+                {preview && (
+                  <div className="mt-3 flex justify-center">
+                    <img
+                      src={preview}
+                      alt="Preview"
+                      className="w-32 h-32 object-cover rounded-lg border border-gray-500"
+                    />
+                  </div>
+                )}
+              </div>
+
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
@@ -131,4 +187,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Contact; 

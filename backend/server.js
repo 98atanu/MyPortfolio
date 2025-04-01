@@ -10,6 +10,8 @@ const PORT = process.env.PORT || 6002;
 
 app.use(express.json());
 app.use(cors());
+app.use("/uploads", express.static("uploads"));
+
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -23,6 +25,7 @@ const contactRoutes = require("./routes/contactRoutes");
 
 app.use("/api/projects", projectRoutes);
 app.use("/api/contact", contactRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
