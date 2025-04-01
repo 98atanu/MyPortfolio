@@ -6,6 +6,7 @@ const ContactSchema = new mongoose.Schema({
   email: { type: String, required: true },
   mobile: { type: String, required: true },
   message: { type: String, required: false },
+  image: {type: String, required: false},
   createdAt: { type: Date, default: Date.now },
 });
 

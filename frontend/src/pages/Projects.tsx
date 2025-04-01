@@ -1,7 +1,8 @@
 import  { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import axios from "axios"; 
+import ProjectCard from "../components/ProjectCard";
+import { ScaleLoader } from "react-spinners";
 interface Project {
   _id: string; 
   title: string;
@@ -39,37 +40,23 @@ const Projects = () => {
         className="text-center max-w-3xl"
       >
         <h2 className="text-5xl font-extrabold text-indigo-500 mb-6">
-          My Projects
+        🚀 My Projects
         </h2>
         <p className="text-lg text-gray-300 leading-relaxed">
           Here are some of my recent projects showcasing my skills in React, Tailwind, Redux, and more. Explore my work and see what I build! 🚀
         </p>
       </motion.div>
 
-      {loading && <p className="text-white text-lg">Loading projects...</p>}
+      {loading && <ScaleLoader color="#6366F1" />}
       {error && <p className="text-red-500 text-lg">{error}</p>}
 
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
-        {projects.map((project) => (
-          <motion.div
-            key={project._id}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="p-6 bg-white/10 backdrop-blur-lg shadow-lg border border-white/20 rounded-lg text-center"
-          >
-            <h3 className="text-2xl font-semibold text-indigo-400">
-              {project.title}
-            </h3>
-            <p className="text-gray-300 mt-2">{project.description}</p>
-            <a href={project.link} target="_blank" rel="noopener noreferrer">
-              <button className="mt-4 flex items-center justify-center gap-2 px-6 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600">
-                View Project <ArrowRight size={20} />
-              </button>
-            </a>
-          </motion.div>
+        {projects.map((item) => (
+          <ProjectCard
+          key={item._id}
+          title={item.title}
+          description={item.description}
+          link={item.link}/>
         ))}
       </div>
     </div>

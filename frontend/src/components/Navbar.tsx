@@ -80,6 +80,14 @@ const Navbar = () => {
                   Contact
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="admin"
+                  className="text-gray-900 dark:text-indigo-200 hover:underline"
+                >
+                  Admin
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>
