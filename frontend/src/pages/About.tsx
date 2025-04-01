@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import SkillSection from "../components/About-Card/SkillSection";
 import { development, languages, tools } from "../const/constants";
