@@ -49,7 +49,7 @@ const Contact = () => {
             if (image) formData.append("image", image);
 
             try {
-              const res = await fetch("http://localhost:6002/api/contact", {
+              const res = await fetch("https://myportfolio-uvn5.onrender.com/api/contact", {
                 method: "POST",
                 body: formData, 
               });
