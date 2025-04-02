@@ -15,11 +15,14 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+const BASE_URL = "https://myportfolio-uvn5.onrender.com"; 
+
 router.post("/", upload.single("image"), async (req, res) => {
   try {
     const { fname, lname, email, mobile, message } = req.body;
-    const image = req.file ? req.file.filename : null; 
-    const imageUrl = req.file ? `http://localhost:6002/uploads/${req.file.filename}` : null; 
+    const image = req.file ? req.file.filename : null;
+    const imageUrl = req.file ? `${BASE_URL}/uploads/${req.file.filename}` : null; 
+    
     const newContact = new Contact({ fname, lname, email, mobile, message, image });
     await newContact.save();
 
@@ -32,15 +35,15 @@ router.post("/", upload.single("image"), async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    let contacts = await Contact.find(); 
+    let contacts = await Contact.find();
 
     if (!Array.isArray(contacts)) {
       return res.status(500).json({ error: "Contacts data is not an array." });
     }
 
     contacts = contacts.map((contact) => ({
-      ...contact.toObject(), 
-      imageUrl: contact.image ? `http://localhost:6002/uploads/${contact.image}` : null,
+      ...contact.toObject(),
+      imageUrl: contact.image ? `${BASE_URL}/uploads/${contact.image}` : null,
     }));
 
     res.json(contacts);

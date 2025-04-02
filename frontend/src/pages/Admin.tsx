@@ -30,6 +30,7 @@ const Admin: React.FC = () => {
 
     fetchContacts();
   }, []);
+  console.log("contacts",contacts)
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-900 px-6 py-10">
