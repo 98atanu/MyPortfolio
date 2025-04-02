@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import MySchema from "../validation/MySchema.ts";
 import { useState } from "react";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:6002";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://myportfolio-uvn5.onrender.com";
 
 const Contact = () => {
   const [image, setImage] = useState<File | null>(null);
@@ -16,7 +16,7 @@ const Contact = () => {
     const file = event.target.files?.[0];
     if (file) {
       setImage(file);
-      setPreview(URL.createObjectURL(file)); 
+      setPreview(URL.createObjectURL(file));
     }
   };
 
@@ -48,19 +48,28 @@ const Contact = () => {
             formData.append("mobile", values.mobile);
             formData.append("message", values.message);
 
-            if (image) formData.append("image", image);
+            if (image) {
+              formData.append("image", image);
+            }
 
             try {
               const res = await fetch(`${API_BASE_URL}/api/contact`, {
                 method: "POST",
-                body: formData, 
+                body: formData,
               });
 
               if (res.ok) {
+                const data = await res.json();
+                const uploadedImageUrl = data.contact?.image
+                  ? `${API_BASE_URL}/uploads/${data.contact.image}`
+                  : null;
+
                 toast.success("Message sent successfully!");
+                console.log("Image URL:", uploadedImageUrl); 
+
                 resetForm();
                 setImage(null);
-                setPreview(null); 
+                setPreview(null);
               } else {
                 toast.error("Oops! Something went wrong. Try again.");
               }
@@ -131,22 +140,6 @@ const Contact = () => {
                 <ErrorMessage name="mobile" component="p" className="text-red-400 text-sm mt-1" />
               </div>
 
-              {/* Message Field */}
-              <div>
-                <label className="block text-gray-300 font-medium">Message</label>
-                <div className="relative">
-                  <MessageCircle className="absolute left-3 top-4 text-gray-400" />
-                  <Field
-                    as="textarea"
-                    name="message"
-                    rows={4}
-                    className="w-full mt-1 p-3 pl-10 bg-gray-800 border border-gray-600 rounded-lg text-gray-300 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    placeholder="Enter your message"
-                  />
-                </div>
-                <ErrorMessage name="message" component="p" className="text-red-400 text-sm mt-1" />
-              </div>
-
               {/* Image Upload Field */}
               <div>
                 <label className="block text-gray-300 font-medium">Upload Image (Optional)</label>
@@ -189,4 +182,4 @@ const Contact = () => {
   );
 };
 
-export default Contact; 
+export default Contact;
