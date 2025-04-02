@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import AdminCard from "../components/AdminCard";
 import { ScaleLoader } from "react-spinners"; 
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:6002";
+
 const Admin: React.FC = () => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +13,7 @@ const Admin: React.FC = () => {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await fetch("http://localhost:6002/api/contact");
+        const response = await fetch(`${API_BASE_URL}/api/contact`);
         const data = await response.json();
 
         if (response.ok) {
