@@ -9,7 +9,14 @@ const app = express();
 const PORT = process.env.PORT || 6002;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173", 
+    "https://my-portfolio-three-omega-95.vercel.app"  
+  ],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 app.use("/uploads", express.static("uploads"));
 
 
@@ -28,5 +35,5 @@ app.use("/api/contact", contactRoutes);
 
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on ${PORT}`);
 });

@@ -10,6 +10,8 @@ interface Project {
   link: string;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:6002";
+
 const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +20,7 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("https://myportfolio-uvn5.onrender.com/api/projects"); 
+        const response = await axios.get(`${API_BASE_URL}/api/projects`); 
         setProjects(response.data);
       } catch (err) {
         setError("Failed to load projects");

@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import MySchema from "../validation/MySchema.ts";
 import { useState } from "react";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:6002";
+
 const Contact = () => {
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -49,7 +51,7 @@ const Contact = () => {
             if (image) formData.append("image", image);
 
             try {
-              const res = await fetch("https://myportfolio-uvn5.onrender.com/api/contact", {
+              const res = await fetch(`${API_BASE_URL}/api/contact`, {
                 method: "POST",
                 body: formData, 
               });
