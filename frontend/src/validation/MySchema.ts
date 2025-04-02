@@ -6,9 +6,8 @@ const MySchema = Yup.object({
     lname: Yup.string().required("Last name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
     mobile: Yup.string()
-      .matches(/^[0-9]+$/, "Only numbers allowed")
-      .min(10, "Must be at least 10 digits")
-      .required("Mobile number is required"),
+    .matches(/^[0-9]{10}$/, "Invalid mobile number")
+    .required("Mobile number is required"),
     message: Yup.string()
       .min(10, "Message must be at least 10 characters"),
   })
