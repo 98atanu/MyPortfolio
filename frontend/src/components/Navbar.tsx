@@ -58,7 +58,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  to="about"
+                  to="/about"
                   className="text-gray-900 dark:text-indigo-200 hover:underline"
                 >
                   About
@@ -66,7 +66,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  to="projects"
+                  to="/projects"
                   className="text-gray-900 dark:text-indigo-200 hover:underline"
                 >
                   Projects
@@ -74,7 +74,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  to="contact"
+                  to="/contact"
                   className="text-gray-900 dark:text-indigo-200 hover:underline"
                 >
                   Contact
@@ -82,7 +82,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  to="admin"
+                  to="/admin"
                   className="text-gray-900 dark:text-indigo-200 hover:underline"
                 >
                   Admin

@@ -14,7 +14,7 @@ app.use(cors({
     "http://localhost:5173", 
     "https://my-portfolio-three-omega-95.vercel.app"  
   ],
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   credentials: true
 }));
 app.use("/uploads", express.static("uploads"));
